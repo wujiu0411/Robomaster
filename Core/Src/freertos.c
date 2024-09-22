@@ -50,6 +50,8 @@
 osThreadId defaultTaskHandle;
 osThreadId motorTaskHandle;
 osThreadId UARTTaskHandle;
+osThreadId SevorTaskHandle;
+osThreadId Sevor2TaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -59,6 +61,8 @@ osThreadId UARTTaskHandle;
 void StartDefaultTask(void const * argument);
 void StartmotorTask(void const * argument);
 void StartUARTTask(void const * argument);
+void StartSevorTask(void const * argument);
+void StartSevor2Task(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -116,6 +120,14 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of UARTTask */
   osThreadDef(UARTTask, StartUARTTask, osPriorityNormal, 0, 128);
   UARTTaskHandle = osThreadCreate(osThread(UARTTask), NULL);
+
+  /* definition and creation of SevorTask */
+  osThreadDef(SevorTask, StartSevorTask, osPriorityNormal, 0, 128);
+  SevorTaskHandle = osThreadCreate(osThread(SevorTask), NULL);
+
+  /* definition and creation of Sevor2Task */
+  osThreadDef(Sevor2Task, StartSevor2Task, osPriorityNormal, 0, 128);
+  Sevor2TaskHandle = osThreadCreate(osThread(Sevor2Task), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -175,6 +187,42 @@ __weak void StartUARTTask(void const * argument)
     osDelay(1);
   }
   /* USER CODE END StartUARTTask */
+}
+
+/* USER CODE BEGIN Header_StartSevorTask */
+/**
+* @brief Function implementing the SevorTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartSevorTask */
+__weak void StartSevorTask(void const * argument)
+{
+  /* USER CODE BEGIN StartSevorTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartSevorTask */
+}
+
+/* USER CODE BEGIN Header_StartSevor2Task */
+/**
+* @brief Function implementing the Sevor2Task thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartSevor2Task */
+__weak void StartSevor2Task(void const * argument)
+{
+  /* USER CODE BEGIN StartSevor2Task */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartSevor2Task */
 }
 
 /* Private application code --------------------------------------------------*/

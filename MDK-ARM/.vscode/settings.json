@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "system_stm32f1xx.h": "c",
+        "ble_remote.h": "c",
+        "pid.h": "c",
+        "usart.h": "c"
+    }
+}

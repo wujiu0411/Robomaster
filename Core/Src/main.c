@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
+#include "dma.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -35,7 +36,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+uint8_t data[11];
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -58,6 +59,14 @@ void MX_FREERTOS_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+   void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	if(huart==&huart3)
+	{	
+    uart_to_remote(data);
+		HAL_UART_Receive_DMA(&huart3,data,11);			
+	}
+}
 
 /* USER CODE END 0 */
 
@@ -89,10 +98,19 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_TIM6_Init();
   MX_TIM8_Init();
-  MX_USART1_UART_Init();
+  MX_TIM2_Init();
+  MX_TIM3_Init();
+  MX_TIM4_Init();
+  MX_TIM5_Init();
+  MX_USART3_UART_Init();
+  MX_TIM1_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+  HAL_UART_Receive_DMA(&huart3,data,11);
+
 
   /* USER CODE END 2 */
 
@@ -107,6 +125,13 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		HAL_Delay(1000);
+
+
+		/*__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, 180/ 180 * 2000 + 500);
+		HAL_Delay(10000);*/
+		
+    //HAL_UART_Transmit_DMA(&huart2,(uint8_t*)"Hello world\r\n",sizeof("Hello world\r\n"));
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
