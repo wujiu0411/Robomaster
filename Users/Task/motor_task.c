@@ -29,19 +29,22 @@ void StartmotorTask(void const * argument)
     motor_c.PidInit(&motor_c, PID_DELTA, 7200,100,4.5,0.4,0.4);
     motor_d.PidInit(&motor_d, PID_DELTA, 7200,100,4.5,0.4,0.4);
 
-    __HAL_TIM_SetCounter(&htim2,0);
-    __HAL_TIM_SetCounter(&htim3,0);
-    __HAL_TIM_SetCounter(&htim4,0);
-    __HAL_TIM_SetCounter(&htim5,0);
+    __HAL_TIM_SetCounter(&htim2,10000);
+    __HAL_TIM_SetCounter(&htim3,10000);
+    __HAL_TIM_SetCounter(&htim4,10000);
+    __HAL_TIM_SetCounter(&htim5,10000);
     
-    
+    motor_a.speed_set=xPosition-yPosition;
+    motor_b.speed_set=xPosition+yPosition;
+    motor_c.speed_set=-xPosition+yPosition;
+    motor_d.speed_set=-xPosition+yPosition;
+
     while(1)
     {
-
-        motor_a.Driver(&motor_a, 7200);
-        motor_b.Driver(&motor_b, 7200);
-        motor_c.Driver(&motor_c, 7200);
-        motor_d.Driver(&motor_d, 7200);
+        motor_a.Driver(&motor_a, motor_a.speed);
+        motor_b.Driver(&motor_b, motor_b.speed);
+        motor_c.Driver(&motor_c, motor_c.speed);
+        motor_d.Driver(&motor_d, motor_d.speed);
 
         osDelayUntil(&time, 1);
     }
