@@ -26,6 +26,10 @@ void StartSevorTask(void const * argument)
              HAL_Delay(1000);
         }
 
-
+        /*   
+        __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, Angle/180*2000+500);
+        HAL_Delay(1000);
+        __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, Angle/180*2000+500);
+        HAL_Delay(1000);*/
     }
 }
