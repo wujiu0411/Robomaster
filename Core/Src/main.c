@@ -61,11 +61,11 @@ void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN 0 */
    void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	if(huart==&huart3)
+	if(huart->Instance== USART3)
 	{	
     uart_to_remote(data);
-		HAL_UART_Receive_DMA(&huart3,data,11);			
 	}
+	HAL_UART_Receive_DMA(&huart3,data,11);
 }
 
 /* USER CODE END 0 */
@@ -107,9 +107,11 @@ int main(void)
   MX_TIM5_Init();
   MX_USART3_UART_Init();
   MX_TIM1_Init();
-  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_UART_Receive_DMA(&huart3,data,11);
+
+  //HAL_TIM_Base_Start(&htim2);
+  //HAL_TIM_MspPostInit(&htim2);
 
 
   /* USER CODE END 2 */
