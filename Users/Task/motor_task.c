@@ -5,6 +5,23 @@
 #include "usart.h"
 #include "ble_remote.h"
 
+#define tread 2.65 //轮距
+#define wheelbase 2.20 //轴距
+
+/**
+ * @brief 编码器初始值置回10000，用于速度计算
+ * @author Hujunhao
+ * @date 2024-9-23
+ * @retval None
+ */
+void reset_counter()
+{ 
+    __HAL_TIM_SetCounter(&htim2,10000);
+    __HAL_TIM_SetCounter(&htim3,10000);
+    __HAL_TIM_SetCounter(&htim4,10000);
+    __HAL_TIM_SetCounter(&htim5,10000);
+}
+ 
 void StartmotorTask(void const *argument)
 {
   uint32_t time = xTaskGetTickCount();
