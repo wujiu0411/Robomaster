@@ -5,21 +5,21 @@
 #include "usart.h"
 #include "ble_remote.h"
 
-#define tread 2.65 //轮距
-#define wheelbase 2.20 //轴距
+#define tread 0.265 //轮距
+#define wheelbase 0.220 //轴距
 
 /**
- * @brief 编码器初始值置回10000，用于速度计算
+ * @brief 编码器初始值置0，用于速度计算
  * @author Hujunhao
  * @date 2024-9-23
  * @retval None
  */
 void reset_counter()
 { 
-    __HAL_TIM_SetCounter(&htim2,10000);
-    __HAL_TIM_SetCounter(&htim3,10000);
-    __HAL_TIM_SetCounter(&htim4,10000);
-    __HAL_TIM_SetCounter(&htim5,10000);
+    __HAL_TIM_SetCounter(&htim2,0);
+    __HAL_TIM_SetCounter(&htim3,0);
+    __HAL_TIM_SetCounter(&htim4,0);
+    __HAL_TIM_SetCounter(&htim5,0);
 }
  
 void StartmotorTask(void const *argument)
@@ -42,9 +42,10 @@ void StartmotorTask(void const *argument)
   Motor_Init(&motor[2], &htim4, &htim8, TIM_CHANNEL_3, CIN1_GPIO_Port, CIN1_Pin, CIN2_GPIO_Port, CIN2_Pin);
   Motor_Init(&motor[3], &htim5, &htim8, TIM_CHANNEL_4, DIN1_GPIO_Port, DIN1_Pin, DIN2_GPIO_Port, DIN2_Pin);
 
+  reset_counter();
   for (size_t i = 0; i < 4; i++)
   {
-    motor[i].PidInit(&motor[i], PID_DELTA, 7200, 100, 4.5, 0.4, 0.4);
+    motor[i].PidInit(&motor[i], PID_DELTA, 7200, 100, 19, 0.9, 0);
   }
 
   // __HAL_TIM_SetCounter(&htim2, 10000);
