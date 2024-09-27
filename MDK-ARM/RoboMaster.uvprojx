@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/STM32F1xx_HAL_Driver/Inc;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\Users\Ble;..\Users\Task;..\Users\Motor</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/STM32F1xx_HAL_Driver/Inc;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\Users\Ble;..\Users\Motor;..\Users\Task</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -578,6 +578,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Users/Motor</GroupName>
+          <Files>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Users\Motor\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Users\Motor\motor.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Users/Ble</GroupName>
           <Files>
             <File>
@@ -599,31 +614,6 @@
               <FileName>sevor_task.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Users\Task\sevor_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>sevor2_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Users\Task\sevor2_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>uart_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Users\Task\uart_task.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Users/Motor</GroupName>
-          <Files>
-            <File>
-              <FileName>pid.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Users\Motor\pid.c</FilePath>
-            </File>
-            <File>
-              <FileName>motor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Users\Motor\motor.c</FilePath>
             </File>
           </Files>
         </Group>
