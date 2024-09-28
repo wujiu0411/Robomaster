@@ -13,7 +13,8 @@ void StartmotorTask(void const *argument)
 {
   uint32_t time = xTaskGetTickCount();
   float Vx, Vy, Vz, Va;
-  float k = sqrt(pow(0.265 / 2,2) +pow(0.220 / 2,2));
+  float k = 0.265 / 2 + 0.220 / 2;
+  float m=2;
   const remote_t *r = get_remote_control_point();
   Motor motor[4];
 
@@ -33,18 +34,19 @@ void StartmotorTask(void const *argument)
     Vy = r->rocker[0].y_position;
     Va = r->rocker[0].angle*k;
     Vz = r->rocker[1].y_position;//摇杆二控制旋转
-    motor[0].speed_set = -Vx + Vy - Vz;
+		
+		motor[0].speed_set = -Vx + Vy - Vz;
     motor[1].speed_set = -Vx - Vy + Vz;
 
     motor[2].speed_set = -Vx + Vy + Vz;
     motor[3].speed_set = -Vx - Vy - Vz;
-    
-		
-		/*motor[0].speed_set = Vx - Vy -Vz;
-    motor[1].speed_set = Vx + Vy -Vz;
 
-    motor[2].speed_set = Vx - Vy -Vz;
-    motor[3].speed_set = Vx + Vy -Vz;*/
+    /*motor[0].speed_set = -Vx + Vy - Vz;
+    motor[1].speed_set = -Vx - Vy + Vz;
+
+    motor[2].speed_set = -Vx + Vy + Vz;
+    motor[3].speed_set = -Vx - Vy - Vz;*/
+
   
     for (size_t i = 0; i < 4; i++)
     {
