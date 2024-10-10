@@ -32,22 +32,28 @@ void StartmotorTask(void const *argument)
   {
     Vx = r->rocker[0].x_position;
     Vy = r->rocker[0].y_position;
-    Va = r->rocker[0].angle*k;
+    Va = r->rocker[1].x_position;
     Vz = r->rocker[1].y_position;//摇杆二控制旋转
 		
-		motor[0].speed_set = -Vx + Vy - Vz;
-    motor[1].speed_set = -Vx - Vy + Vz;
+		motor[0].speed_set = Vx + Vy - Vz;
+    motor[1].speed_set = -Vx + Vy - Vz;
 
-    motor[2].speed_set = -Vx + Vy + Vz;
-    motor[3].speed_set = -Vx - Vy - Vz;
+    motor[2].speed_set = -Vx - Vy - Vz;
+    motor[3].speed_set = Vx - Vy - Vz;
 
     /*motor[0].speed_set = -Vx + Vy - Vz;
     motor[1].speed_set = -Vx - Vy + Vz;
 
     motor[2].speed_set = -Vx + Vy + Vz;
     motor[3].speed_set = -Vx - Vy - Vz;*/
+    if(r->Switch[2])
+      {
+        motor[0].speed_set = Va*1.1;
+        motor[1].speed_set = -Va;
+        motor[2].speed_set = -Va;
+        motor[3].speed_set = Va;
+      }
 
-  
     for (size_t i = 0; i < 4; i++)
     {
       motor[i].EncoderUpdate(&motor[i]);
