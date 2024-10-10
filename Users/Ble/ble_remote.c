@@ -5,14 +5,6 @@ remote_t remote;
 
 uint8_t uart_to_remote(uint8_t *buff)
 {
-	if(buff[0]!=BLE_REMOTE_HEAD||buff[BLE_REMOTE_LENGTH-1]!=BLE_REMOTE_TAIL)
-	{
-		return REMOTE_ERROR;
-	}
-	if(uart_to_rocker(&buff[1],&(remote.rocker[0]))==REMOTE_ERROR||uart_to_rocker(&buff[5],&(remote.rocker[1])))
-	{
-		return REMOTE_ERROR;
-	}
 	remote.Button[0]=(buff[9]&0x80)>>7;
 	remote.Button[1]=(buff[9]&0x40)>>6;
 	remote.Button[2]=(buff[9]&0x20)>>5;
@@ -22,6 +14,14 @@ uint8_t uart_to_remote(uint8_t *buff)
 	remote.Switch[2]=(buff[9]&0x02)>>1;
 	remote.Switch[3]=buff[9]&0x01;
 	return REMOTE_OK;
+	if(buff[0]!=BLE_REMOTE_HEAD||buff[BLE_REMOTE_LENGTH-1]!=BLE_REMOTE_TAIL)
+	{
+		return REMOTE_ERROR;
+	}
+	if(uart_to_rocker(&buff[1], &(remote.rocker[0])) == REMOTE_ERROR || uart_to_rocker(&buff[5], &(remote.rocker[1])) == REMOTE_ERROR)
+	{
+		return REMOTE_ERROR;
+	}
 }
 float degree_to_rad(int16_t degree)
 {
@@ -49,7 +49,7 @@ uint8_t uart_to_rocker(uint8_t *buff, rocker_t *rocker)
 			return REMOTE_ERROR;
 		}
 	}
-	else if(rocker->angle<ROCKER_DISTANCE_MIN||rocker->angle>ROCKER_DISTANCE_MAX)
+	else if(rocker->angle<ROCKER_ANGLE_MIN||rocker->angle>ROCKER_ANGLE_MAX)
 	{
 		return REMOTE_ERROR;
 	}
