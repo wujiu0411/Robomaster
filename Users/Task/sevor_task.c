@@ -25,16 +25,18 @@ void StartSevorTask(void const * argument)
             __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1, 250);
             HAL_Delay(1000);
         }
-        if(r->Switch[0])
+
+        if(r->Button[0])
         {
             __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, 220);//球门开
             HAL_Delay(1000);
         }
-        if(r->Switch[1])
+        if(r->Button[1])
         {   
             __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, 250);//球门关
             HAL_Delay(1000);
         }
+        
         if(r->Switch[2])
         {
             HAL_GPIO_WritePin(FAN_GPIO_Port, FAN_Pin, GPIO_PIN_SET);//控制继电器开，启动风机
@@ -47,10 +49,12 @@ void StartSevorTask(void const * argument)
             HAL_Delay(1000);
         }
 				
-       /*__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, 220);
-        HAL_Delay(1000);
-        __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2,260);
-        HAL_Delay(1000);*/
+       /*__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, 150);
+        HAL_Delay(5000);*/
+        __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2,220);//放球
+        HAL_Delay(5000);
+				
+				
     }
 		     osDelayUntil(&time,1000);
 }
