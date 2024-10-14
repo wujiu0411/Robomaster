@@ -1,23 +1,23 @@
 # robomaster蛟龙
 
 #### 介绍
-robomaster蛟龙
+上海大学robomaster蛟龙战队校内赛电控代码
 
 #### 软件架构
 软件架构说明
 
+使用CUBEMX配置![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20241014215807.jpg)
 
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  STM32C8T6
+2.  蓝牙HC-05
+3.  舵机MG995
+4.  降压板LM2569
+
+
+
 
 #### 参与贡献
 
