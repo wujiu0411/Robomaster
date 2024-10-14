@@ -578,6 +578,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Users/Ble</GroupName>
+          <Files>
+            <File>
+              <FileName>ble_remote.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Users\Ble\ble_remote.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Users/Motor</GroupName>
           <Files>
             <File>
@@ -589,16 +599,6 @@
               <FileName>motor.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Users\Motor\motor.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Users/Ble</GroupName>
-          <Files>
-            <File>
-              <FileName>ble_remote.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Users\Ble\ble_remote.c</FilePath>
             </File>
           </Files>
         </Group>

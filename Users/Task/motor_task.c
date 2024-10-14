@@ -48,7 +48,7 @@ void StartmotorTask(void const *argument)
     motor[3].speed_set = -Vx - Vy - Vz;*/
     if(r->Switch[2])
       {
-        motor[0].speed_set = Va*1.1;
+        motor[0].speed_set = Va;
         motor[1].speed_set = -Va;
         motor[2].speed_set = -Va;
         motor[3].speed_set = Va;
